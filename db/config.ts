@@ -2,7 +2,7 @@ import { defineDb, defineTable, column } from 'astro:db';
 
 const User = defineTable({
   columns:{
-    id: column.number({primaryKey: true}),
+    id: column.text({primaryKey: true}),
     username: column.text({unique: true, optional: false}),
     password: column.text({optional: true})
   }
@@ -10,8 +10,8 @@ const User = defineTable({
 
 const Session = defineTable({
   columns:{
-    id: column.number({primaryKey: true}),
-    userId: column.number({references: () => User.columns.id}),
+    id: column.text({primaryKey: true}),
+    userId: column.text({optional: false, references: () => User.columns.id}),
     expiresAt: column.number()
   }
 })
